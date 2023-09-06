@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:wanted_vinyls/utility/discogs.dart';
 
 class Search extends StatefulWidget {
-  const Search({super.key});
+  const Search({
+    super.key,
+    required this.onSearch,
+  });
+
+  final void Function(String query) onSearch;
 
   @override
   State<Search> createState() => _SearchState();
@@ -11,10 +15,6 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final _searchController = TextEditingController();
-
-  void onSearch() {
-    print(apiToken);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,9 @@ class _SearchState extends State<Search> {
             icon: const Icon(
               Icons.search,
             ),
-            onPressed: onSearch,
+            onPressed: () {
+              widget.onSearch(_searchController.text);
+            },
           ),
         ],
       ),

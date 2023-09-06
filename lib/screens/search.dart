@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanted_vinyls/utility/discogs.dart';
 import 'package:wanted_vinyls/widgets/search.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -9,14 +10,33 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  String? _query;
+
+  void search(String query) {
+    setState(() {
+      _query = query;
+    });
+    // querySearch(query);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    Widget content = const Text('No search');
+    if (_query == '') {
+      content = const Text('Empty string');
+    }
+    // _query.isNull ? const Text('NO SEACRH FOUND') : const Text('WE HAVE DATA');
+
+    return Column(
       children: [
-        Search(),
+        Search(
+          onSearch: (query) {
+            search(query);
+          },
+        ),
         Expanded(
           child: Center(
-            child: Text('CENTER'),
+            child: content,
           ),
         ),
       ],
