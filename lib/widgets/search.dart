@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:wanted_vinyls/utility/discogs.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -9,6 +11,11 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final _searchController = TextEditingController();
+
+  void onSearch() {
+    print(apiToken);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,9 +51,7 @@ class _SearchState extends State<Search> {
             icon: const Icon(
               Icons.search,
             ),
-            onPressed: () {
-              print(_searchController.text);
-            },
+            onPressed: onSearch,
           ),
         ],
       ),
