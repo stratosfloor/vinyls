@@ -42,7 +42,15 @@ class _SearchScreenState extends State<SearchScreen> {
             itemCount: _list.length,
             itemBuilder: (context, index) {
               return ListTile(
-                  leading: Text((index + 1).toString()),
+                  leading: Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: NetworkImage(_list[index]['thumb']),
+                      fit: BoxFit.contain,
+                    )),
+                  ),
                   title: Text(_list[index]['title']),
                   tileColor: index % 2 == 0
                       ? Theme.of(context).colorScheme.secondaryContainer
