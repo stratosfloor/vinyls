@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wanted_vinyls/utility/discogs.dart';
 import 'package:wanted_vinyls/widgets/search.dart';
+import 'package:wanted_vinyls/widgets/search_tile.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -41,20 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: ListView.builder(
             itemCount: _list.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                  leading: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: NetworkImage(_list[index]['thumb']),
-                      fit: BoxFit.contain,
-                    )),
-                  ),
-                  title: Text(_list[index]['title']),
-                  tileColor: index % 2 == 0
-                      ? Theme.of(context).colorScheme.secondaryContainer
-                      : Theme.of(context).colorScheme.surface);
+              return SearchTile(tile: _list[index], index: index);
             }),
       );
     }
