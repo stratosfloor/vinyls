@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanted_vinyls/models/album.dart';
 import 'package:wanted_vinyls/utility/discogs.dart';
 import 'package:wanted_vinyls/widgets/search.dart';
 import 'package:wanted_vinyls/widgets/search_tile.dart';
@@ -12,7 +13,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   String? _query;
-  List _list = [];
+  List<Album> _list = [];
   var _isSearching = false;
 
   void search(String query) async {

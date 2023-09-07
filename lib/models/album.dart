@@ -7,7 +7,6 @@ class Album {
     required this.masterId,
     required this.title,
     required this.year,
-    required this.genre,
     required this.thumbnail,
     required this.coverImage,
   });
@@ -15,7 +14,6 @@ class Album {
   final int masterId;
   final String title;
   final String year;
-  final String genre;
   final String thumbnail;
   final String coverImage;
 }

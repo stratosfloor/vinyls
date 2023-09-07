@@ -12,16 +12,28 @@ String get discogsUrl {
   return "https://api.discogs.com/database/";
 }
 
-Future<List> querySearch(String query) async {
+Future<List<Album>> querySearch(String query) async {
   final url = Uri.parse(
       "https://api.discogs.com/database/search?q=$query&type=master&token=$apiToken");
   final response = await http.get(url);
   final resData = json.decode(response.body);
   final length = resData['pagination']['items'];
 
+  final List<Album> data = [];
   if (length == 0) {
-    return [];
+    return data;
   }
 
-  return resData['results'];
+  for (var res in resData['results']) {
+    final album = Album(
+      masterId: res['master_id'] ??= '',
+      title: res['title'] ??= '',
+      year: res['year'] ??= '',
+      thumbnail: res['thumb'] ?? '',
+      coverImage: res['cover_image'] ??= '',
+    );
+    data.add(album);
+  }
+
+  return data;
 }
