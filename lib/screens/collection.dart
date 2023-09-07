@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wanted_vinyls/models/album.dart';
 import 'package:wanted_vinyls/providers/albums.dart';
-import 'package:wanted_vinyls/utility/discogs.dart';
 import 'package:wanted_vinyls/widgets/album_tile.dart';
 
 class CollectionScreen extends ConsumerStatefulWidget {
@@ -23,21 +21,24 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final list = ref.watch(albumsProvider);
+    var list = ref.watch(albumsProvider);
     // list.sort((a, b) => a.title.compareTo(b.title));
+
     return Center(
       child: Scrollbar(
         thickness: 15,
         radius: const Radius.circular(15),
         trackVisibility: false,
-        child: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return AlbumTile(
-                tile: list[index],
-                index: index,
-              );
-            }),
+        child: FutureBuilder(
+          future: _listFuture,
+          builder: (context, snapshot) =>
+              snapshot.connectionState == ConnectionState.waiting
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (ctx, index) =>
+                          AlbumTile(tile: list[index], index: index)),
+        ),
       ),
     );
   }
