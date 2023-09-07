@@ -5,13 +5,15 @@ var uuid = const Uuid();
 class Album {
   const Album({
     required this.masterId,
+    required this.id,
     required this.title,
     required this.year,
     required this.thumbnail,
     required this.coverImage,
   });
 
-  final int masterId;
+  final String masterId;
+  final String id;
   final String title;
   final String year;
   final String thumbnail;

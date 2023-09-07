@@ -26,7 +26,7 @@ class AlbumTile extends StatelessWidget {
         )),
       ),
       title: Text(tile.title),
-      subtitle: Text(tile.year),
+      subtitle: tile.year != '0' ? Text(tile.year) : null,
       tileColor: index % 2 == 0
           ? Theme.of(context).colorScheme.secondaryContainer
           : Theme.of(context).colorScheme.surface,

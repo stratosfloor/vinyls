@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:wanted_vinyls/screens/start.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const App());
+  runApp(
+    const ProviderScope(child: App()),
+  );
 }
 
 class App extends StatelessWidget {
