@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:wanted_vinyls/models/album.dart';
 
-class SearchTile extends StatelessWidget {
-  const SearchTile({
+class AlbumTile extends StatelessWidget {
+  const AlbumTile({
     super.key,
     required this.tile,
     required this.index,
+    this.addToList,
   });
 
   final Album tile;
   final int index;
+  final Widget? addToList;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,11 @@ class SearchTile extends StatelessWidget {
         )),
       ),
       title: Text(tile.title),
+      subtitle: Text(tile.year),
       tileColor: index % 2 == 0
           ? Theme.of(context).colorScheme.secondaryContainer
           : Theme.of(context).colorScheme.surface,
-      trailing: const Icon(Icons.add),
+      trailing: addToList,
     );
   }
 }
