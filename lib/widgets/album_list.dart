@@ -8,25 +8,22 @@ class AlbumList extends StatelessWidget {
   const AlbumList({
     super.key,
     required this.list,
+    this.addWidget = false,
   });
 
   final List<Album> list;
+  final bool addWidget;
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      thickness: 15,
-      radius: const Radius.circular(15),
-      trackVisibility: false,
-      child: ListView.builder(
-          itemCount: list.length,
-          itemBuilder: (context, index) {
-            return AlbumTile(
-              tile: list[index],
-              index: index,
-              addToList: const AddAlbum(),
-            );
-          }),
-    );
+    return ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          return AlbumTile(
+            tile: list[index],
+            index: index,
+            addToList: addWidget ? const AddAlbum() : null,
+          );
+        });
   }
 }

@@ -36,7 +36,10 @@ class _SearchScreenState extends State<SearchScreen> {
       content = const Center(child: Text('No albums found'));
     }
     if (_list.isNotEmpty) {
-      content = AlbumList(list: _list);
+      content = AlbumList(
+        list: _list,
+        addWidget: true,
+      );
     }
 
     return Column(

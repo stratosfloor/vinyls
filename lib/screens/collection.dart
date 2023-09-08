@@ -29,12 +29,52 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
         thickness: 15,
         radius: const Radius.circular(15),
         trackVisibility: false,
-        child: FutureBuilder(
-          future: _listFuture,
-          builder: (context, snapshot) =>
-              snapshot.connectionState == ConnectionState.waiting
-                  ? const Center(child: CircularProgressIndicator())
-                  : AlbumList(list: list),
+        child: Column(
+          children: [
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Artist'),
+                      IconButton(
+                        iconSize: 20,
+                        onPressed: null,
+                        icon: Icon(Icons.arrow_circle_down),
+                      ),
+                    ]),
+                Row(mainAxisSize: MainAxisSize.min, children: [
+                  Text('Title'),
+                  IconButton(
+                    iconSize: 20,
+                    onPressed: null,
+                    icon: Icon(Icons.arrow_circle_down),
+                  ),
+                ]),
+                Row(mainAxisSize: MainAxisSize.min, children: [
+                  Text('Year'),
+                  IconButton(
+                    iconSize: 20,
+                    onPressed: null,
+                    icon: Icon(Icons.arrow_circle_down),
+                  ),
+                ]),
+              ],
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: _listFuture,
+                builder: (context, snapshot) =>
+                    snapshot.connectionState == ConnectionState.waiting
+                        ? const Center(child: CircularProgressIndicator())
+                        : AlbumList(
+                            list: list,
+                          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

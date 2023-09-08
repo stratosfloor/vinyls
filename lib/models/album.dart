@@ -1,10 +1,8 @@
+import 'package:http/http.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
 
-// TODO:
-//  separate artist and title
-//
 class Album {
   const Album({
     required this.masterId,
