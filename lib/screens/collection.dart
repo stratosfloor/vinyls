@@ -16,7 +16,7 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
   @override
   void initState() {
     super.initState();
-    _listFuture = ref.read(albumsProvider.notifier).loadAlbums();
+    _listFuture = ref.read(albumsProvider.notifier).loadMyCollection();
   }
 
   @override
@@ -43,3 +43,5 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
     );
   }
 }
+
+// TODO: sorteting, filtering and search in collection

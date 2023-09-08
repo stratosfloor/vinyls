@@ -7,8 +7,7 @@ import 'package:http/http.dart' as http;
 class AlbumsNotifier extends StateNotifier<List<Album>> {
   AlbumsNotifier() : super(const []);
 
-  // TODO: Rename to loadCollection
-  Future<void> loadAlbums() async {
+  Future<void> loadMyCollection() async {
     String endpoint = collectionEndpoint;
 
     final response = await http.get(Uri.parse(endpoint));
