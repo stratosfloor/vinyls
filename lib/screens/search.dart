@@ -32,9 +32,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = const Text('No search');
+    Widget content = const Center(child: Text('No search'));
     if (_query != null) {
-      content = const Text('No albums found');
+      content = const Center(child: Text('No albums found'));
     }
     if (_list.isNotEmpty) {
       content = Scrollbar(
@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
               return AlbumTile(
                 tile: _list[index],
                 index: index,
-                addToList: AddAlbum(),
+                addToList: const AddAlbum(),
               );
             }),
       );
@@ -56,14 +56,15 @@ class _SearchScreenState extends State<SearchScreen> {
     return Column(
       children: [
         Search(
-          isSearching: _isSearching,
           onSearch: (query) {
             search(query);
           },
         ),
         Expanded(
           child: Container(
-            child: content,
+            child: !_isSearching
+                ? content
+                : const Center(child: CircularProgressIndicator()),
           ),
         ),
       ],

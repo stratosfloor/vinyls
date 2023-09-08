@@ -8,6 +8,8 @@ import 'package:wanted_vinyls/screens/search.dart';
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
 
+  // TODO: add darkmode, stateful widget
+
   @override
   build(BuildContext context) {
     return DefaultTabController(
@@ -15,6 +17,7 @@ class StartScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Wanted Vinyls'),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.dark_mode))],
           notificationPredicate: (ScrollNotification notification) {
             return notification.depth == 1;
           },
