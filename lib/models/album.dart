@@ -2,10 +2,14 @@ import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
 
+// TODO:
+//  separate artist and title
+//
 class Album {
   const Album({
     required this.masterId,
     required this.id,
+    required this.artist,
     required this.title,
     required this.year,
     required this.thumbnail,
@@ -14,6 +18,7 @@ class Album {
 
   final String masterId;
   final String id;
+  final String artist;
   final String title;
   final String year;
   final String thumbnail;
