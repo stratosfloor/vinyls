@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wanted_vinyls/models/album.dart';
 import 'package:wanted_vinyls/utility/discogs.dart';
-import 'package:wanted_vinyls/widgets/add_album.dart';
-import 'package:wanted_vinyls/widgets/album_tile.dart';
+import 'package:wanted_vinyls/widgets/album_list.dart';
 import 'package:wanted_vinyls/widgets/search.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -37,20 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
       content = const Center(child: Text('No albums found'));
     }
     if (_list.isNotEmpty) {
-      content = Scrollbar(
-        thickness: 15,
-        radius: const Radius.circular(15),
-        trackVisibility: false,
-        child: ListView.builder(
-            itemCount: _list.length,
-            itemBuilder: (context, index) {
-              return AlbumTile(
-                tile: _list[index],
-                index: index,
-                addToList: const AddAlbum(),
-              );
-            }),
-      );
+      content = AlbumList(list: _list);
     }
 
     return Column(
@@ -61,11 +47,9 @@ class _SearchScreenState extends State<SearchScreen> {
           },
         ),
         Expanded(
-          child: Container(
-            child: !_isSearching
-                ? content
-                : const Center(child: CircularProgressIndicator()),
-          ),
+          child: !_isSearching
+              ? content
+              : const Center(child: CircularProgressIndicator()),
         ),
       ],
     );

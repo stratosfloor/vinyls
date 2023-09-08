@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wanted_vinyls/providers/albums.dart';
-import 'package:wanted_vinyls/widgets/album_tile.dart';
+import 'package:wanted_vinyls/widgets/album_list.dart';
 
 class CollectionScreen extends ConsumerStatefulWidget {
   const CollectionScreen({super.key});
@@ -34,10 +34,7 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
           builder: (context, snapshot) =>
               snapshot.connectionState == ConnectionState.waiting
                   ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      itemCount: list.length,
-                      itemBuilder: (ctx, index) =>
-                          AlbumTile(tile: list[index], index: index)),
+                  : AlbumList(list: list),
         ),
       ),
     );
