@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wanted_vinyls/providers/albums.dart';
 import 'package:wanted_vinyls/widgets/album_list.dart';
+import 'package:wanted_vinyls/widgets/sorting_bar.dart';
 
 import '../models/album.dart';
+import '../models/sorting.dart';
 
 class CollectionScreen extends ConsumerStatefulWidget {
   const CollectionScreen({super.key});
@@ -14,9 +16,9 @@ class CollectionScreen extends ConsumerStatefulWidget {
 
 class _CollectionScreenState extends ConsumerState<CollectionScreen> {
   late Future<void> _listFuture;
-  bool _artistAscending = true;
-  bool _titleAscending = true;
-  bool _yearAscending = true;
+  final _artistSorting = Sorting(asc: true, active: false);
+  final _titleSorting = Sorting(asc: true, active: false);
+  final _yearSorting = Sorting(asc: true, active: false);
 
   @override
   void initState() {
@@ -26,34 +28,34 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
 
   void sortListByArtist(List<Album> list) {
     setState(() {
-      if (_artistAscending) {
+      if (_artistSorting.asc) {
         list.sort((a, b) => a.artist.compareTo(b.artist));
       } else {
         list.sort((b, a) => a.artist.compareTo(b.artist));
       }
-      _artistAscending = !_artistAscending;
+      _artistSorting.asc = !_artistSorting.asc;
     });
   }
 
   void sortListByTitle(List<Album> list) {
     setState(() {
-      if (_titleAscending) {
+      if (_titleSorting.asc) {
         list.sort((a, b) => a.title.compareTo(b.title));
       } else {
         list.sort((b, a) => a.title.compareTo(b.title));
       }
-      _titleAscending = !_titleAscending;
+      _titleSorting.asc = !_titleSorting.asc;
     });
   }
 
   void sortListByYear(List<Album> list) {
     setState(() {
-      if (_yearAscending) {
+      if (_yearSorting.asc) {
         list.sort((a, b) => a.year.compareTo(b.year));
       } else {
         list.sort((b, a) => a.year.compareTo(b.year));
       }
-      _yearAscending = !_yearAscending;
+      _yearSorting.asc = !_yearSorting.asc;
     });
   }
 
@@ -69,43 +71,13 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
         trackVisibility: false,
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Artist'),
-                      IconButton(
-                        iconSize: 20,
-                        onPressed: () {
-                          sortListByArtist(list);
-                        },
-                        icon: const Icon(Icons.arrow_circle_down),
-                      ),
-                    ]),
-                Row(mainAxisSize: MainAxisSize.min, children: [
-                  const Text('Title'),
-                  IconButton(
-                    iconSize: 20,
-                    onPressed: () {
-                      sortListByTitle(list);
-                    },
-                    icon: const Icon(Icons.arrow_circle_down),
-                  ),
-                ]),
-                Row(mainAxisSize: MainAxisSize.min, children: [
-                  const Text('Year'),
-                  IconButton(
-                    iconSize: 20,
-                    onPressed: () {
-                      sortListByYear(list);
-                    },
-                    icon: const Icon(Icons.arrow_circle_down),
-                  ),
-                ]),
-              ],
+            SortingBar(
+              sortListByArtist: () => sortListByArtist(list),
+              sortListByTitle: () => sortListByTitle(list),
+              sortListByYear: () => sortListByYear(list),
+              sortArtist: _artistSorting,
+              sortTitle: _titleSorting,
+              sortYear: _yearSorting,
             ),
             Expanded(
               child: FutureBuilder(
