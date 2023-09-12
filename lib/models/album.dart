@@ -1,7 +1,7 @@
-import 'package:http/http.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
+// TODO: Add Date addedToCollection
 
 class Album {
   const Album({

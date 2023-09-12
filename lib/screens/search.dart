@@ -17,6 +17,8 @@ class _SearchScreenState extends State<SearchScreen> {
   var _isSearching = false;
 
   void search(String query) async {
+    // TODO: stateprovider
+    // ref.read
     setState(() {
       _query = query;
       _isSearching = true;
