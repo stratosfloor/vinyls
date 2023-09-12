@@ -1,16 +1,14 @@
 # wanted_vinyls
 
-A new Flutter project.
+Discogs-like app using Discogs API.
 
-## Getting Started
+## Under development
 
-This project is a starting point for a Flutter application.
+## To use
 
-A few resources to get you started if this is your first Flutter project:
+Auth with login will be implementet later.
+To use:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Create .env in root folder.
+- Add `"DISCOGS_USERNAME=<YOUR USERNAME>"
+- add "DISCOGS_API_TOKEN=<YOUR TOKEN>"
