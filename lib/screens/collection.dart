@@ -96,5 +96,4 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen> {
     );
   }
 }
-
 // TODO: sorteting, filtering and search in collection

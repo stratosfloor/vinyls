@@ -25,7 +25,7 @@ class AlbumTile extends StatelessWidget {
           fit: BoxFit.contain,
         )),
       ),
-      title: Text('${tile.artist} - ${tile.title}'),
+      title: Text('${(index + 1)}. ${tile.artist} - ${tile.title}'),
       subtitle: tile.year != '0' ? Text(tile.year) : null,
       tileColor: index % 2 == 0
           ? Theme.of(context).colorScheme.secondaryContainer

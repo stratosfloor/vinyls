@@ -14,8 +14,8 @@ String get apiUsername {
   return dotenv.env['DISCOGS_USERNAME']!;
 }
 
-String get collectionEndpoint {
-  return 'https://api.discogs.com/users/$apiUsername/collection/folders/0/releases?token=$apiToken';
+String collectionEndpoint({int page = 1}) {
+  return 'https://api.discogs.com/users/$apiUsername/collection/folders/0/releases?page=$page&token=$apiToken';
 }
 
 Future<List<Album>> querySearch(String query) async {
